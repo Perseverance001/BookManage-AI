@@ -71,4 +71,6 @@ public interface UsersService extends IService<Users> {
      * @return R
      */
     R<String> deleteStatementByUserId( Integer userId);
+
+    R register(Users users);
 }

@@ -6,56 +6,46 @@
       <div class="avatar_box">
         <img src="../assets/images/dinosaur.jpg" alt="" />
       </div>
-      <!-- 登录表单区域 -->
-      <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
+      <!-- 注册表单区域 -->
+      <el-form ref="registerFormRef" :model="registerForm" :rules="registerFormRules" label-width="0px" class="login_form">
         <!-- 用户名 -->
         <el-form-item prop="username">
-          <el-input v-model.trim="loginForm.username" prefix-icon="iconfont icon-yonghu"></el-input>
+          <el-input v-model.trim="registerForm.username" prefix-icon="iconfont icon-yonghu"></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
-          <el-input v-model="loginForm.password" prefix-icon="iconfont icon-mima1" type="password"
-            @keyup.enter.native="login" :show-password="true"></el-input>
+          <el-input v-model="registerForm.password" prefix-icon="iconfont icon-mima1" type="password" :show-password="true"></el-input>
+        </el-form-item>
+        <!-- 邮箱 -->
+        <el-form-item prop="email">
+          <el-input v-model="registerForm.email" prefix-icon="iconfont icon-youjian" type="email"></el-input>
+        </el-form-item>
+        <!-- 真实姓名 -->
+        <el-form-item prop="cardName">
+          <el-input v-model="registerForm.cardName" prefix-icon="iconfont icon-zhenshixingming"></el-input>
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="login" :loading="loginLoading">登录</el-button>
-          <el-button type="info" @click="resetLoginForm">重置</el-button>
-          <el-button type="success" @click="goRegister">注册</el-button> <!-- 添加注册按钮 -->
+          <el-button type="primary" @click="register" :loading="registerLoading">注册</el-button>
+          <el-button type="info" @click="resetRegisterForm">重置</el-button>
+          <el-button type="success" @click="goLogin">登录</el-button> <!-- 添加登录按钮 -->
         </el-form-item>
       </el-form>
     </div>
-<!--    粒子插件特效-->
+    <!-- 粒子插件特效 -->
     <vue-particles class="login-bg" color="#39AFFD" :particleOpacity="0.7" :particlesNumber="100" shapeType="circle"
       :particleSize="4" linesColor="#8DD1FE" :linesWidth="1" :lineLinked="true" :lineOpacity="0.4" :linesDistance="150"
       :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
     </vue-particles>
     <div class="footer">
       <span style="font-weight: bold;color:white;margin-bottom: 10px">
-        登录页面切换
-        <!-- <i class="iconfont icon-haoyou " @click="goUser"></i> -->
+        注册页面切换
       </span>
       <span>
         <i class="iconfont icon-guanliyuan" @click="goManage"></i>
       </span>
     </div>
     <div class="footer2">
-
-<!--      <el-popover placement="top-start" :width="150" trigger="hover">-->
-<!--        <p slot="reference"> 联系作者|   ©2022-2023 By Per<br /> </p>-->
-<!--        <img-->
-<!--            src="https://pic.yupi.icu/5563/202312061315664.png"-->
-<!--            style="height: 100px; width: 100px"-->
-<!--        />-->
-<!--      </el-popover>-->
-<!--      <a href="https://beian.miit.gov.cn">备案号:浙ICP备2023044565号-2 | </a>-->
-<!--      <a href="https://beian.mps.gov.cn/#/query/webSearch">-->
-<!--        <img-->
-<!--            src="https://xxx.xiaobaitiao.icu/img/icu/202312211243636.png"-->
-<!--            style="height: 16px; width: 16px; margin: 5px 0px 0px 5px"-->
-<!--        />-->
-<!--        浙公网安备33028202001002号-->
-<!--      </a>-->
     </div>
   </div>
 </template>
@@ -64,14 +54,15 @@
 export default {
   data() {
     return {
-      //登录表单
-      loginForm: {
+      // 注册表单
+      registerForm: {
         username: "",
         password: "",
+        email: "",
+        cardName: ""
       },
-
-      //登录表单规则的验证对象
-      loginFormRules: {
+      // 注册表单规则的验证对象
+      registerFormRules: {
         username: [
           { required: true, message: "用户名不能为空", trigger: "blur" },
           {
@@ -90,55 +81,59 @@ export default {
             trigger: "blur",
           },
         ],
+        email: [
+          { required: true, message: "邮箱不能为空", trigger: "blur" },
+          { type: "email", message: "请输入正确的邮箱地址", trigger: "blur" }
+        ],
+        cardName: [
+          { required: true, message: "真实姓名不能为空", trigger: "blur" },
+          {
+            min: 2,
+            max: 50,
+            message: "长度在 2 到 50 个字符",
+            trigger: "blur",
+          },
+        ]
       },
-      loginLoading: false
+      registerLoading: false
     };
   },
   methods: {
-    resetLoginForm() {
-      this.$refs.loginFormRef.resetFields();
+    resetRegisterForm() {
+      this.$refs.registerFormRef.resetFields();
     },
-    login() {
-      this.$refs.loginFormRef.validate(async (valid) => {
-        // console.log(valid);
-        //如果表单验证无效，直接返回
+    register() {
+      this.$refs.registerFormRef.validate(async (valid) => {
+        // 如果表单验证无效，直接返回
         if (!valid) {
           return;
         }
-        this.loginLoading = true;
-        // 进行md5加密
-        const salt = "xiaobaitiao";
-        const username = this.loginForm.username;
-        const password = this.loginForm.password;
-        //向数据库发送axios请求，如果登录成功，就跳转
+        this.registerLoading = true;
+        // 向数据库发送axios请求，如果注册成功，就跳转
         const { data: res } = await this.$http.post(
-          "user/login",
+          "user/register",
           {
-            username,
-            password
+            username: this.registerForm.username,
+            password: this.registerForm.password,
+            email: this.registerForm.email,
+            cardName: this.registerForm.cardName
           }
         );
         if (res.status !== 200) {
-          this.loginLoading = false;
+          this.registerLoading = false;
           return this.$message.error(res.msg);
         }
-        // console.log(res);
-        this.$message.success("登录成功");
-        this.loginLoading = false;
-        window.sessionStorage.setItem("token", res.map.token);
-        window.sessionStorage.setItem("userId", res.map.id);
-        this.$router.push("/home"); //跳转到home页面下
+        this.$message.success("注册成功");
+        this.registerLoading = false;
+        this.$router.push("/login"); // 跳转到登录页面
       });
     },
-    goUser() {
+    goLogin() { // 添加跳转到登录页面的方法
       this.$router.push("/login");
     },
     goManage() {
       this.$router.push("/loginmanage");
-    },
-    goRegister() { // 添加跳转到注册页面的方法
-      this.$router.push("/register");
-    },
+    }
   },
 };
 </script>
@@ -156,14 +151,13 @@ export default {
 }
 
 .login_container {
-  // background-color: #2b4b6b;
   background: url(https://4kwallpapers.com/images/walls/thumbs_3t/21054.jpg) no-repeat 0px 0px;
   background-size: cover;
   height: 100%;
 }
 
 .login_box {
-  height: 300px;
+  height: 400px; /* 增加高度以适应新的表单项 */
   width: 450px;
   background-color: #fff;
   border-radius: 3px;
@@ -213,7 +207,7 @@ export default {
   color: white;
   text-align: center;
   font-weight: 700;
-  //控制字体间距
+  // 控制字体间距
   letter-spacing: 10px;
 }
 

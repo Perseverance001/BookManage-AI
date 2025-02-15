@@ -31,6 +31,11 @@ public class Users implements Serializable {
     private String password;
 
     /**
+     * 邮箱
+     */
+    private  String email;
+
+    /**
      * 真实姓名
      */
     private String cardName;

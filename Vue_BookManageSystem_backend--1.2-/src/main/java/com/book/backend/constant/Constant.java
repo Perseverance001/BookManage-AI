@@ -7,6 +7,11 @@ package com.book.backend.constant;
  */
 public class Constant {
     /**
+     * 普通用户
+     */
+    public static final Integer USER_RULE_NUMBER = 1;
+
+    /**
      * 字符串NULL判断
      */
     public  static final String NULL = "null";

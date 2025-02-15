@@ -36,7 +36,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
     /**
      * 盐值，混淆密码
      */
-    private static final String SALT = "xiaobaitiao";
+    private static final String SALT = "perseverance";
     /**
      * 1.获取userId,创建条件构造器 判断userId是否为null
      * 2.调用userService的getOne查询是否等于该用户id的用户
@@ -130,8 +130,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
             return R.error("账号已被禁止登录");
         }
 
-//        String password = DigestUtils.md5DigestAsHex((SALT+users.getPassword()).getBytes());
-        String password = users.getPassword();
+        String password = DigestUtils.md5DigestAsHex((SALT+users.getPassword()).getBytes());
         if (!password.equals(user.getPassword())) {
             result.setStatus(404);
             return R.error("用户名或密码错误");
@@ -288,6 +287,86 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users>
         }
         return R.success(null, "删除借阅证成功");
     }
+    @Override
+    public R register(Users users) {
+        R result = new R<>();
+
+        // 检查用户名是否为空或null等情况
+        if (StringUtils.isBlank(users.getUsername())) {
+            result.setStatus(400);
+            return R.error("用户名不能为空");
+        }
+
+        // 检查用户名是否已存在
+        LambdaQueryWrapper<Users> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Users::getUsername, users.getUsername());
+        Users existingUser = this.getOne(queryWrapper);
+        if (existingUser != null) {
+            result.setStatus(400);
+            return R.error("用户名已存在");
+        }
+
+        // 检查密码是否为空
+        String password = users.getPassword();
+        if (StringUtils.isBlank(password)) {
+            result.setStatus(400);
+            return R.error("密码不能为空");
+        }
+
+        // 检查邮箱是否为空
+        String email = users.getEmail();
+        if (StringUtils.isBlank(email)) {
+            result.setStatus(400);
+            return R.error("邮箱不能为空");
+        }
+
+        // 检查真实姓名是否为空
+        String cardName = users.getCardName();
+        if (StringUtils.isBlank(cardName)) {
+            result.setStatus(400);
+            return R.error("真实姓名不能为空");
+        }
+
+        // 对密码进行加密处理
+        String saltPassword = SALT + password;
+        String md5Password = DigestUtils.md5DigestAsHex(saltPassword.getBytes());
+        users.setPassword(md5Password);
+
+        // 设置默认状态（例如：可用）
+        users.setStatus(Constant.AVAILABLE);
+
+        // 设置借阅证编号（假设借阅证编号是随机生成的11位数字）
+        users.setCardNumber(generateCardNumber());
+
+        // 设置权限(阅读规则)
+        users.setRuleNumber(Constant.USER_RULE_NUMBER);
+
+        // 保存新用户信息到数据库
+        boolean save = this.save(users);
+        if (!save) {
+            result.setStatus(500);
+            return R.error("注册失败");
+        }
+
+        // 返回成功信息
+        result.setStatus(200);
+        result.setMsg("注册成功");
+        return result;
+    }
+
+    /**
+     * 生成随机的11位借阅证编号
+     * @return 11位借阅证编号
+     */
+    private Long generateCardNumber() {
+        StringBuilder cardNumber = new StringBuilder();
+        for (int i = 0; i < 11; i++) {
+            int digit = (int) (Math.random() * 10);
+            cardNumber.append(digit);
+        }
+        return Long.parseLong(cardNumber.toString());
+    }
+
 }
 
 

@@ -1,10 +1,5 @@
 # 智能图书馆开源文档
 
->作者：[程序员小白条](https://luoye6.github.io/)
->
->[Gitee 主页](https://gitee.com/falle22222n-leaves)
->
->[GitHub 主页](https://github.com/luoye6)
 
 Language：**[English](README_en.md)**| **[中文](README.md).**
 

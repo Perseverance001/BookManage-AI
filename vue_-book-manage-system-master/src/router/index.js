@@ -6,6 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   { path: "/", redirect: "/login" },
   { path: "/login", component: () => import("@/components/Login.vue") },
+  { path: "/register", component: () => import("@/components/Register.vue") }, // 添加注册页面路由
   {
     path: "/loginmanage",
     component: () => import("@/components/BookManage/LoginBookManage.vue"),

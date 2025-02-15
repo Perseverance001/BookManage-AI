@@ -1,0 +1,366 @@
+{
+  "id": "4828673",
+  "name": "BookManage-AI",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "毕设",
+  "glyphs": [
+    {
+      "icon_id": "423641",
+      "name": "推荐-反推荐",
+      "font_class": "tuijianfantuijian",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "1727359",
+      "name": "23规则",
+      "font_class": "guize",
+      "unicode": "e89a",
+      "unicode_decimal": 59546
+    },
+    {
+      "icon_id": "11463946",
+      "name": "首页",
+      "font_class": "shouye",
+      "unicode": "e605",
+      "unicode_decimal": 58885
+    },
+    {
+      "icon_id": "6027502",
+      "name": "邮箱",
+      "font_class": "youxiang",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "6176560",
+      "name": "公告",
+      "font_class": "gonggao",
+      "unicode": "e639",
+      "unicode_decimal": 58937
+    },
+    {
+      "icon_id": "7776736",
+      "name": "违法违章信息",
+      "font_class": "weifaweizhangxinxi",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "8508831",
+      "name": "个人信息",
+      "font_class": "gerenxinxi",
+      "unicode": "e847",
+      "unicode_decimal": 59463
+    },
+    {
+      "icon_id": "22758045",
+      "name": "图书借阅信息",
+      "font_class": "tushujieyuexinxi",
+      "unicode": "e832",
+      "unicode_decimal": 59442
+    },
+    {
+      "icon_id": "34964853",
+      "name": "读者留言2-copy",
+      "font_class": "duzheliuyan",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "5638040",
+      "name": "真实姓名",
+      "font_class": "zhenshixingming",
+      "unicode": "e638",
+      "unicode_decimal": 58936
+    },
+    {
+      "icon_id": "9841778",
+      "name": "密码",
+      "font_class": "mima1",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "43219186",
+      "name": "验证码",
+      "font_class": "yanzhengma",
+      "unicode": "e60e",
+      "unicode_decimal": 58894
+    },
+    {
+      "icon_id": "43219188",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "43327988",
+      "name": "搜索文件",
+      "font_class": "sousuowenjian",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "43327990",
+      "name": "新建",
+      "font_class": "xinjian",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "43328120",
+      "name": "箭头down",
+      "font_class": "jiantoudown",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    },
+    {
+      "icon_id": "43328121",
+      "name": "箭头left",
+      "font_class": "jiantouleft",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "43328154",
+      "name": "箭头up",
+      "font_class": "jiantouup",
+      "unicode": "e615",
+      "unicode_decimal": 58901
+    },
+    {
+      "icon_id": "43328158",
+      "name": "箭头right",
+      "font_class": "jiantouright",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "43328181",
+      "name": "返回顶部",
+      "font_class": "dajiantou",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "43328182",
+      "name": "提示",
+      "font_class": "tishi",
+      "unicode": "e618",
+      "unicode_decimal": 58904
+    },
+    {
+      "icon_id": "43328183",
+      "name": "添加",
+      "font_class": "tianjia",
+      "unicode": "e619",
+      "unicode_decimal": 58905
+    },
+    {
+      "icon_id": "43328184",
+      "name": "异常",
+      "font_class": "yichang",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "43328185",
+      "name": "减去",
+      "font_class": "jianqu",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "43328186",
+      "name": "帮助",
+      "font_class": "bangzhu",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "43328219",
+      "name": "分享",
+      "font_class": "fenxiang",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "43328220",
+      "name": "删除",
+      "font_class": "shanchu",
+      "unicode": "e61e",
+      "unicode_decimal": 58910
+    },
+    {
+      "icon_id": "43328221",
+      "name": "手机",
+      "font_class": "shouji",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "43328222",
+      "name": "邮件",
+      "font_class": "youjian",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "43328223",
+      "name": "筛选",
+      "font_class": "shaixuan",
+      "unicode": "e621",
+      "unicode_decimal": 58913
+    },
+    {
+      "icon_id": "43328224",
+      "name": "趋势",
+      "font_class": "qushi",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "43328245",
+      "name": "复制",
+      "font_class": "fuzhi",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "43328247",
+      "name": "编辑",
+      "font_class": "bianji",
+      "unicode": "e624",
+      "unicode_decimal": 58916
+    },
+    {
+      "icon_id": "43328249",
+      "name": "消息",
+      "font_class": "xiaoxi",
+      "unicode": "e625",
+      "unicode_decimal": 58917
+    },
+    {
+      "icon_id": "43328451",
+      "name": "隐藏",
+      "font_class": "yincang",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "43328452",
+      "name": "查看",
+      "font_class": "chakan",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "43328543",
+      "name": "退出",
+      "font_class": "tuichu",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "43328544",
+      "name": "密码",
+      "font_class": "mima",
+      "unicode": "e629",
+      "unicode_decimal": 58921
+    },
+    {
+      "icon_id": "43328546",
+      "name": "退出登录",
+      "font_class": "tuichudenglu",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "43328563",
+      "name": "电脑",
+      "font_class": "diannao",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "43328564",
+      "name": "关闭",
+      "font_class": "guanbi",
+      "unicode": "e62c",
+      "unicode_decimal": 58924
+    },
+    {
+      "icon_id": "43328566",
+      "name": "确认",
+      "font_class": "queren",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "43328567",
+      "name": "目录",
+      "font_class": "mulu",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "43328605",
+      "name": "文件",
+      "font_class": "wenjian",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "43328606",
+      "name": "新增",
+      "font_class": "xinzeng",
+      "unicode": "e630",
+      "unicode_decimal": 58928
+    },
+    {
+      "icon_id": "43328607",
+      "name": "搜索",
+      "font_class": "sousuo",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "43328608",
+      "name": "刷新",
+      "font_class": "shuaxin",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "43339684",
+      "name": "标签",
+      "font_class": "biaoqian",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "43339685",
+      "name": "保存",
+      "font_class": "baocun",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "43339686",
+      "name": "切换",
+      "font_class": "qiehuan",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "43339687",
+      "name": "标记",
+      "font_class": "biaoji",
+      "unicode": "e636",
+      "unicode_decimal": 58934
+    }
+  ]
+}

@@ -15,7 +15,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/user")
-public class UserLoginController {
+public class UserController {
    @Resource
     private UsersService usersService;
 
@@ -39,5 +39,16 @@ public class UserLoginController {
     @PostMapping("/getData")
     public R<Users> getUserData(@RequestBody Users users) {
         return usersService.getUserData(users);
+    }
+
+    /**
+     * 用户注册
+     *
+     * @param users 用户信息
+     * @return 返回R通用数据
+     */
+    @PostMapping("/register")
+    public R register(@RequestBody Users users) {
+        return usersService.register(users);
     }
 }

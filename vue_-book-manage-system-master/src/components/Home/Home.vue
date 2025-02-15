@@ -25,19 +25,19 @@
         <el-menu :default-active="activePath" class="el-menu-vertical-demo" background-color="#fff" text-color="black"
           active-text-color="#ffd04b" :router="true" :collapse="isCollapse" :collapse-transition="false">
           <el-menu-item index="index" @click="saveNavState('index')">
-            <i class="iconfont icon-shouyefill"></i>
+            <i class="iconfont icon-shouye"></i>
             <span slo="title">首页</span>
           </el-menu-item>
           <el-menu-item index="search" @click="saveNavState('search')">
-            <i class="iconfont icon-sousuoxiao"></i>
+            <i class="iconfont icon-sousuowenjian"></i>
             <span slot="title">图书查询</span>
           </el-menu-item>
           <el-menu-item index="rule" @click="saveNavState('rule')">
-            <i class="iconfont icon-guizeshezhi"></i>
+            <i class="iconfont icon-guize"></i>
             <span slot="title">读者规则</span>
           </el-menu-item>
           <el-menu-item index="notice" @click="saveNavState('notice')">
-            <i class="iconfont icon-gonggao1"></i>
+            <i class="iconfont icon-gonggao"></i>
             <span slot="title">查看公告</span>
           </el-menu-item>
           <el-menu-item index="information" @click="saveNavState('information')">
@@ -45,19 +45,19 @@
             <span slot="title">个人信息</span>
           </el-menu-item>
           <el-menu-item index="borrow" @click="saveNavState('borrow')">
-            <i class="iconfont icon-tushuqikan"></i>
+            <i class="iconfont icon-tushujieyuexinxi"></i>
             <span slot="title">借阅信息</span>
           </el-menu-item>
           <el-menu-item index="violation" @click="saveNavState('violation')">
-            <i class="iconfont icon-weizhangchaxun"></i>
+            <i class="iconfont icon-weifaweizhangxinxi"></i>
             <span slot="title">违章信息</span>
           </el-menu-item>
           <el-menu-item index="comment" @click="saveNavState('comment')">
-            <i class="iconfont icon-liuyan"></i>
+            <i class="iconfont icon-duzheliuyan"></i>
             <span slot="title">读者留言</span>
           </el-menu-item>
           <el-menu-item index="intelligent" @click="saveNavState('intelligent')">
-            <i class="el-icon-monitor"></i>
+            <i class="iconfont icon-tuijianfantuijian"></i>
             <span slot="title">智能推荐</span>
           </el-menu-item>
 <!--          <el-menu-item index="chat" @click="saveNavState('chat')">-->
