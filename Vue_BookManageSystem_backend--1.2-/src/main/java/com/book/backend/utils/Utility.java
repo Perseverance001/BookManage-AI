@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 
 /**
- * @author 程序员小白条
+ * @author Per
  */
 public class Utility {
     /**

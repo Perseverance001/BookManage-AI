@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 删除用户调用AI模型的无效回复
  *
- * @author <a href="https://github.com/luoye6">程序员小白条</a>
+ * @author Per
  * 
  */
 // todo 取消 @Component 注释开启任务

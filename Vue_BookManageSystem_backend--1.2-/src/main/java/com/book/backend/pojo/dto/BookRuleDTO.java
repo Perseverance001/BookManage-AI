@@ -6,7 +6,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @author 程序员小白条
+ * @author Per
  */
 @Data
 public class BookRuleDTO extends BookRule implements Serializable {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * Spring上下文工具类，用以让普通类获取Spring容器中的Bean
- * @author 程序员小白条
+ * @author Per
  */
 @Component
 public class SpringBootUtil implements ApplicationContextAware {

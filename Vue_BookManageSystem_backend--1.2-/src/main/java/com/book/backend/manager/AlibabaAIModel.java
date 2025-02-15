@@ -18,8 +18,7 @@ import java.util.stream.Collectors;
 /**
  * 阿里AI模型 通义千问-Plus 工具类
  *
- * @author <a href="https://github.com/luoye6">小白条
- * @from <a href="https://luoye6.github.io/"> 个人博客
+ * @author <a href="https://github.com/luoye6">Per
  */
 @Service
 @Slf4j

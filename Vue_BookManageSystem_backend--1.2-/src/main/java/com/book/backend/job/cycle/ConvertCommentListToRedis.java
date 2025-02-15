@@ -15,8 +15,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * @author <a href="https://github.com/luoye6">小白条
- * @from <a href="https://luoye6.github.io/"> 个人博客
+ * @author Per
  */
 // todo 取消 @Component 注释开启任务
 // 程序启动时执行一次，然后每隔1天自动执行定时任务

@@ -12,9 +12,8 @@ import com.book.backend.pojo.dto.BorrowTypeDTO;
 import java.util.List;
 
 /**
- * @author 程序员小白条
+ * @author Per
  * @description 针对表【t_books】的数据库操作Service
- * @createDate 2023-02-04 18:07:43
  */
 public interface BooksService extends IService<Books> {
     /**

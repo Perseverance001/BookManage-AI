@@ -1,7 +1,7 @@
 package com.book.backend.constant;
 
 /**
- * @author 程序员小白条
+ * @author Per
  * 常量类
  * 防止魔法值
  */

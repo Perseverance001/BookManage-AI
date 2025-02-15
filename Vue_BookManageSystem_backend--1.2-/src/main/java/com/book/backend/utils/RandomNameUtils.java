@@ -6,7 +6,7 @@ import java.util.Random;
 
 
 /**
- * @author 程序员小白条
+ * @author Per
  */
 public class RandomNameUtils {
 

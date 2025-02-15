@@ -3,7 +3,7 @@ package com.book.backend.common.exception;
 /**
  * 抛异常工具类
  *
- * @author <a href="https://github.com/luoye6">程序员小白条</a>
+ * @author Per
  * 
  */
 public class ThrowUtils {

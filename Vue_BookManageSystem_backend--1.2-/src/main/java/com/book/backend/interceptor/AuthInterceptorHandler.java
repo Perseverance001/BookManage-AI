@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
 /**
- * @author 程序员小白条
+ * @author Per
  */
 public class AuthInterceptorHandler implements HandlerInterceptor {
     @Autowired

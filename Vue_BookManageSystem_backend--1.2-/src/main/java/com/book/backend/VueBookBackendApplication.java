@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @author 程序员小白条
+ * @author Per
  */
 // @SpringBootApplication(exclude = {RedisAutoConfiguration.class})
 // todo 如需关闭 Redis，须添加 exclude 中的内容

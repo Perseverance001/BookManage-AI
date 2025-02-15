@@ -17,9 +17,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * @author 程序员小白条
+ * @author Per
  * @description 针对表【t_comment】的数据库操作Service实现
- * @createDate 2023-02-06 19:19:20
  */
 @Service
 public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment>

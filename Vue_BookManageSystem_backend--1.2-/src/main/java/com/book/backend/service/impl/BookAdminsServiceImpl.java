@@ -27,9 +27,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @author 程序员小白条
+ * @author Per
  * @description 针对表【t_book_admins】的数据库操作Service实现
- * @createDate 2023-02-04 16:55:39
  */
 @Service
 public class BookAdminsServiceImpl extends ServiceImpl<BookAdminsMapper, BookAdmins>

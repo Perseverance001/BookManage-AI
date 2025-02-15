@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
-* @author 程序员小白条
+* @author Per
 * @description 针对表【t_admins】的数据库操作Service
 * @createDate 2023-02-03 20:01:01
 */
