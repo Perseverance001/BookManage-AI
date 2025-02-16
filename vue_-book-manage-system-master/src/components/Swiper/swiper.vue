@@ -6,26 +6,23 @@
       <!-- 每个节点 -->
       <div class="swiper-slide">
         <img
-          data-src="https://pic.yupi.icu/5563/202311091857319.jpg"
-          src="https://pic.yupi.icu/5563/202311091902481.gif"
-          alt="书籍1"
+          data-src="https://img0.baidu.com/it/u=2958632508,1917305803&fm=253&fmt=auto&app=120&f=JPEG?w=750&h=500"
+          alt="swiper1"
           class="swiper-lazy"
         />
       </div>
       <div class="swiper-slide">
         <img
-          data-src="https://pic.yupi.icu/5563/202311091857306.jpg"
-          src="https://pic.yupi.icu/5563/202311091902481.gif"
-          alt="书籍2"
+          data-src="https://4kwallpapers.com/images/walls/thumbs_3t/911.jpg"
+          alt="swiper2"
           class="swiper-lazy"
         />
         <div class="swiper-lazy-preloader"></div>
       </div>
       <div class="swiper-slide">
         <img
-          data-src="https://pic.yupi.icu/5563/202311091857330.jpg"
-          src="https://pic.yupi.icu/5563/202311091902481.gif"
-          alt="书籍3"
+          data-src="https://4kwallpapers.com/images/walls/thumbs_3t/12870.jpg"
+          alt="swiper3"
           class="swiper-lazy"
         />
         <div class="swiper-lazy-preloader"></div>
@@ -85,9 +82,8 @@ export default {
 @import "../../../node_modules/swiper/dist/css/swiper.css";
 
 .swiper-container {
-  width: 1000px;
-  height: 650px;
-  margin-top: 40px;
+    width: 100%;
+    height: 100%;
 }
 
 .swiper-slide img {

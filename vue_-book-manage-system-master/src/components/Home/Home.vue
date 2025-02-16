@@ -209,7 +209,6 @@ export default {
 
 .el-main {
   background-color: #eaedf1;
-  padding: 20px;
 }
 
 .iconfont {
