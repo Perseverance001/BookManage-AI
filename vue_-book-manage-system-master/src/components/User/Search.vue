@@ -1,9 +1,9 @@
 <template>
   <div class="search_container">
     <!-- 面包屑导航区域 -->
-    <el-breadcrumb separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item>首页</el-breadcrumb-item>
-      <el-breadcrumb-item>图书查询</el-breadcrumb-item>
+    <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-top: 12px;">
+      <el-breadcrumb-item style="font-size: 14px;">首页</el-breadcrumb-item>
+      <el-breadcrumb-item style="font-size: 14px;">图书查询</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card shadow="always">
       <!-- 搜索内容和导出区域 -->

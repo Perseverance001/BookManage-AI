@@ -4,7 +4,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="https://xxx.xiaobaitiao.icu/img/icu/202312211243634.jpg" alt=""/>
+        <img src="https://4kwallpapers.com/images/walls/thumbs_2t/15415.png" alt=""/>
       </div>
       <!-- 登录表单区域 -->
       <el-form
@@ -18,14 +18,14 @@
         <el-form-item prop="username">
           <el-input
               v-model.trim="loginForm.username"
-              prefix-icon="iconfont icon-gerenxinxi"
+              prefix-icon="iconfont icon-yonghu"
           ></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
           <el-input
               v-model="loginForm.password"
-              prefix-icon="iconfont icon-tianchongxing-"
+              prefix-icon="iconfont icon-mima1"
               type="password"
               @keyup.enter.native="login"
               :show-password="true"
@@ -58,11 +58,10 @@
     >
     </vue-particles>
     <div class="footer">
-       <span style="font-weight: bold;color:white;margin-bottom: 10px">
-        登录页面切换
+      <span><i class="iconfont icon-guanliyuan1" @click="goUser" style="font-size: 40px;color: white"></i></span>
+        <span style="font-weight: bold;color:white;margin-bottom: 10px">
+        用户登录
       </span>
-      <span><i class="iconfont icon-haoyou" @click="goUser"></i></span>
-
     </div>
     <div class="footer2">
 <!--      <el-popover placement="top-start" :width="150" trigger="hover">-->
@@ -172,8 +171,7 @@ export default {
 }
 
 .login_container {
-  // background-color: #2b4b6b;
-  background: url(https://xxx.xiaobaitiao.icu/img/icu/202312211236280.jpg) no-repeat 0px 0px;
+  background: url(https://4kwallpapers.com/images/walls/thumbs/1454.jpg) no-repeat 0px 0px;
   background-size: cover;
   height: 100%;
 }

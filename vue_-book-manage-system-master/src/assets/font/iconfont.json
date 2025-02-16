@@ -6,6 +6,27 @@
   "description": "毕设",
   "glyphs": [
     {
+      "icon_id": "3590935",
+      "name": "管理员",
+      "font_class": "guanliyuan1",
+      "unicode": "e63a",
+      "unicode_decimal": 58938
+    },
+    {
+      "icon_id": "25972478",
+      "name": "user_root",
+      "font_class": "user_root",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "569038",
+      "name": "管理员",
+      "font_class": "guanliyuan",
+      "unicode": "e656",
+      "unicode_decimal": 58966
+    },
+    {
       "icon_id": "423641",
       "name": "推荐-反推荐",
       "font_class": "tuijianfantuijian",

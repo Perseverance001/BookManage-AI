@@ -4,7 +4,7 @@
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
-        <img src="../assets/images/dinosaur.jpg" alt="" />
+        <img src="https://4kwallpapers.com/images/walls/thumbs_2t/16148.jpg" alt="" />
       </div>
       <!-- 登录表单区域 -->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">
@@ -31,13 +31,12 @@
       :moveSpeed="3" :hoverEffect="true" hoverMode="grab" :clickEffect="true" clickMode="push">
     </vue-particles>
     <div class="footer">
-      <span style="font-weight: bold;color:white;margin-bottom: 10px">
-        登录页面切换
-        <!-- <i class="iconfont icon-haoyou " @click="goUser"></i> -->
-      </span>
       <span>
-        <i class="iconfont icon-guanliyuan" @click="goManage"></i>
+        <i class="iconfont icon-user_root" @click="goManage" style="font-size: 40px;color: white"></i>
       </span>
+        <span style="font-weight: bold;color:white;margin-bottom: 10px">
+        切换到管理员登录
+        </span>
     </div>
     <div class="footer2">
 
@@ -106,8 +105,6 @@ export default {
           return;
         }
         this.loginLoading = true;
-        // 进行md5加密
-        const salt = "xiaobaitiao";
         const username = this.loginForm.username;
         const password = this.loginForm.password;
         //向数据库发送axios请求，如果登录成功，就跳转

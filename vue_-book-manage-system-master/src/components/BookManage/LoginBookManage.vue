@@ -5,7 +5,7 @@
       <!-- 头像区域 -->
       <div class="avatar_box">
         <img
-          src="https://xxx.xiaobaitiao.icu/img/icu/202312211243634.jpg"
+          src="https://4kwallpapers.com/images/walls/thumbs_2t/15915.png"
           alt=""
         />
       </div>
@@ -21,14 +21,14 @@
         <el-form-item prop="username">
           <el-input
             v-model.trim="loginForm.username"
-            prefix-icon="iconfont icon-gerenxinxi"
+            prefix-icon="iconfont icon-yonghu"
           ></el-input>
         </el-form-item>
         <!-- 密码 -->
         <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
-            prefix-icon="iconfont icon-tianchongxing-"
+            prefix-icon="iconfont icon-mima1"
             type="password"
             @keyup.enter.native="login"
             :show-password="true"
@@ -63,13 +63,29 @@
     >
     </vue-particles>
     <div class="footer">
-       <span style="font-weight: bold;color:white;">
-        登录页面切换
-      </span>
-      <span><i class="iconfont icon-haoyou" @click="goUser"></i></span>
+        <div>
+            <p style="margin-left: 10px">
+                <i class="iconfont icon-yonghu" @click="goUser" style="font-size: 40px;color: white;">
+                </i>
+            </p>
+            <span style="font-weight: bold;color:white;font-size: 16px;">用户登录</span>
+        </div>
+        <div>
+            <p style="margin-left: 10px">
+                <i class="iconfont icon-guanliyuan1" @click="goAdmin" style="font-size: 40px;color: white">
+                </i>
+            </p>
+            <span style="font-weight: bold;color:white;font-size: 16px">root登录</span>
+        </div>
+<!--      <span>-->
+<!--          <i class="iconfont icon-user_root" @click="goUser" style="font-size: 40px"></i>-->
+<!--          <i class="iconfont icon-guanliyuan1" @click="goAdmin"></i>-->
+<!--      </span>-->
       <span>
-        <i class="iconfont icon-guanliyuanrenzheng" @click="goAdmin"></i>
       </span>
+<!--        <span style="font-weight: bold;color:white;">-->
+<!--        登录页面切换-->
+<!--      </span>-->
     </div>
     <div class="footer2">
 <!--      <el-popover placement="top-start" :width="150" trigger="hover">-->
@@ -183,7 +199,7 @@ export default {
 
 .login_container {
   // background-color: #2b4b6b;
-  background: url(https://xxx.xiaobaitiao.icu/img/icu/202312211236280.jpg) no-repeat
+  background: url(https://4kwallpapers.com/images/walls/packs/103.jpg) no-repeat
     0px 0px;
   background-size: cover;
   height: 100%;
