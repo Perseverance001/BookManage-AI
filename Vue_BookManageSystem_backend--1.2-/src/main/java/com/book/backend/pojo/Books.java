@@ -1,14 +1,13 @@
 package com.book.backend.pojo;
 
 import com.baomidou.mybatisplus.annotation.*;
+import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
-import lombok.Data;
 
 /**
  *
- * @TableName t_books
+ * TableName t_books
  */
 @TableName(value ="t_books")
 @Data
@@ -58,11 +57,6 @@ public class Books implements Serializable {
      * 图书描述
      */
     private String bookDescription;
-
-    /**
-     * 图书数量
-     */
-    private Integer bookQuantity;
 
     /**
      * 创建时间
