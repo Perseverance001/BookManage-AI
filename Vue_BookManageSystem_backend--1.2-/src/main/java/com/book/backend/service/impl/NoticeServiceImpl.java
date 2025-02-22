@@ -29,7 +29,7 @@ public class NoticeServiceImpl extends ServiceImpl<NoticeMapper, Notice>
     public R<List<Notice>> getNoticeList() {
 
         LambdaQueryWrapper<Notice> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.orderByAsc(Notice::getCreateTime);
+        queryWrapper.orderByDesc(Notice::getCreateTime);
         List<Notice> list = this.list(queryWrapper);
         R<List<Notice>> result = new R<>();
         if (list.isEmpty()) {
