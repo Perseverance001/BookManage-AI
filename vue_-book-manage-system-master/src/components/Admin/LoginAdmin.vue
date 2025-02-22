@@ -58,7 +58,7 @@
     >
     </vue-particles>
     <div class="footer">
-      <span><i class="iconfont icon-guanliyuan1" @click="goUser" style="font-size: 40px;color: white"></i></span>
+      <span><i class="iconfont icon-yonghu" @click="goUser" style="font-size: 40px;color: white"></i></span>
         <span style="font-weight: bold;color:white;margin-bottom: 10px">
         用户登录
       </span>

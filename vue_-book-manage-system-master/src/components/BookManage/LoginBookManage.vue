@@ -1,6 +1,6 @@
 <template>
   <div class="login_container">
-    <div class="login_title">图书管理员登录界面</div>
+    <div class="login_title">AI智阅平台-Manage</div>
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">
@@ -114,8 +114,8 @@ export default {
     return {
       //登录表单
       loginForm: {
-        username: "admin",
-        password: "123456",
+        username: "",
+        password: "",
       },
       //登录表单规则的验证对象
       loginFormRules: {
