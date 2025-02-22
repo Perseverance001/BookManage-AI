@@ -16,7 +16,7 @@
       >
       <div slot="content" class="content_tip">可借阅数量: {{ item.bookLimitNumber }}<br/>可借阅天数: {{ item.bookDays }}
       <br/>可借阅图书馆: {{ item.bookLimitLibrary }}<br/>过期扣费/天: {{ item.bookOverdueFee }}</div>
-        <el-button style="font-size:16px">借阅证规则编号: {{ item.bookRuleId }}</el-button>
+        <el-button style="font-size:16px">借阅规则编号: {{ item.bookRuleId }}</el-button>
       </el-tooltip>
      
     </div>

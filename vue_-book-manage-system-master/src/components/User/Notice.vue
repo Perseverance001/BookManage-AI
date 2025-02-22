@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      text: "图书馆公告栏,记得查收公告呀!小项目请勿恶意攻击,谢谢",
+      text: "最新上架《国家为什么会失败》（Why Nations Fail）！",
       noticeList:[
         {
           noticeId:0,

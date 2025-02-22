@@ -1,6 +1,6 @@
 <template>
   <div class="login_container">
-    <div class="login_title">智阅平台</div>
+    <div class="login_title">AI智阅平台</div>
     <div class="login_box">
       <!-- 头像区域 -->
       <div class="avatar_box">

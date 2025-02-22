@@ -2,8 +2,8 @@
   <div class="information_container">
     <div class="backgroundImg">
       <img
-        src="https://xxx.xiaobaitiao.icu/img/icu/202312211243635.jpg"
-        alt="背景图片"
+              src="https://4kwallpapers.com/images/walls/thumbs/21293.jpg"
+              alt="background"
       />
     </div>
     <div class="information_header">
@@ -18,10 +18,10 @@
         element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.8)">
-      <div class="information_banner_left" >
-        <div class="banner_left_main" v-if="show">
+        <div class="information_banner_center">
+            <div class="banner_main" v-if="show">
           <div class="number">
-            <i class="el-icon-collection-tag"></i> 借阅证编号:
+              <i class="el-icon-collection-tag"></i> 借阅证号:
             {{ this.user.cardNumber }}
           </div>
           <div class="name">
@@ -29,7 +29,7 @@
             {{ this.user.cardName }}
           </div>
           <div class="rule">
-            <i class="iconfont icon-guizeshezhi"></i> 规则编号:
+              <i class="iconfont icon-guizeshezhi"></i> 借阅规则编号:
             {{ this.user.ruleNumber }}
           </div>
           <div class="status">
@@ -63,9 +63,9 @@
           </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
-          <el-button @click="editDialogVisible = false">取 消</el-button>
+          <el-button @click="editDialogVisible = false">取消</el-button>
           <el-button type="primary" @click="changePassword"
-            >确 定</el-button
+          >确定</el-button
           >
         </span>
       </el-dialog>
@@ -202,20 +202,20 @@ export default {
   display: flex;
   flex-direction: row;
   height: 400px;
-  // background-color: pink;
-  .information_banner_left {
-    flex: 0.5;
-    // background-color: brown;
-    text-align: center;
+    justify-content: center; /* 水平居中 */
+
+    .information_banner_center {
+
+    text-align: center;;
   }
   .information_banner_right {
-    flex: 0.5;
-    // background-color: skyblue;
-    text-align: left;
+      justify-content: center; /* 水平居中 */
+      text-align: center;
     line-height: 400px;
   }
 }
-.banner_left_main {
+
+.banner_main {
   margin-top: 120px;
   color: black;
   font-size: 20px;
@@ -225,7 +225,7 @@ export default {
 }
 .changePWD {
   position: absolute;
-  top: 50%;
-  left: 50%;
+    top: 63%;
+    left: 60%;
 }
 </style>
