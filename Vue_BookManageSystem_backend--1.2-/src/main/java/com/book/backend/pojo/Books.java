@@ -59,6 +59,11 @@ public class Books implements Serializable {
     private String bookDescription;
 
     /**
+     * 图书数量
+     */
+    private Integer bookQuantity;
+
+    /**
      * 创建时间
      */
     @TableField(fill = FieldFill.INSERT)
