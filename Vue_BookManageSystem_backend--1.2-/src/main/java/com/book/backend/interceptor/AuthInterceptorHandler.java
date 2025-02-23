@@ -38,6 +38,10 @@ public class AuthInterceptorHandler implements HandlerInterceptor {
         if(("springfox.documentation.swagger.web.ApiResourceController").equals(handlerMethod.getBean().getClass().getName())){
             return  true;
         }
+        // 允许未登录用户访问注册路径
+        if (request.getServletPath().equals("/user/register")) {
+            return true;
+        }
 
         if ((Constant.OPTIONS).equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);

@@ -154,7 +154,8 @@ router.beforeEach((to, from, next) => {
     if (
       to.path === "/login" ||
       to.path === "/loginmanage" ||
-      to.path === "/loginadmin"
+      to.path === "/loginadmin" ||
+      to.path === "/register"
     ) {
       next();
     } else {
