@@ -30,11 +30,11 @@ public class Constant {
     /**
      * 图书已借出状态
      */
-    public static final String BOOKDISABLE = "已借出";
+    public static final String BOOKDISABLE = "借完";
     /**
      * 图书未借出状态
      */
-    public static final String BOOKAVAILABLE = "未借出";
+    public static final String BOOKAVAILABLE = "有书";
     /**
      * 用户可用状态 字符串
      */

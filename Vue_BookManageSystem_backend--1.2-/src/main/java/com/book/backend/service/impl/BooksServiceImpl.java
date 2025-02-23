@@ -180,15 +180,17 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
      * 4.状态未借出:返回错误信息
      */
     @Override
-    public R<String> queryBookExpireByBookNumber(Long bookNumber) {
+    public R<String> queryBookExpireByBookNumber(Long bookNumber,Long cardNumber) {
 
-        LambdaQueryWrapper<Books> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(Books::getBookNumber, bookNumber);
-        Books book = this.getOne(queryWrapper);
-        if (book == null || book.getBookStatus().equals(Constant.BOOKAVAILABLE)) {
+        LambdaQueryWrapper<BooksBorrow> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber).eq(BooksBorrow::getCardNumber, cardNumber).isNull(BooksBorrow::getReturnDate);
+        BooksBorrow bookBorrowRecord = booksBorrowService.getOne(queryWrapper);
+//        queryWrapper.eq(Books::getBookNumber, bookNumber);
+//        Books book = this.getOne(queryWrapper);
+        if (bookBorrowRecord == null) {
             return R.error("该图书未借出或图书编号不存在");
         }
-        return R.success(null, "图书已借出");
+        return R.success(null, "该借书阅记录存在");
     }
 
     /**

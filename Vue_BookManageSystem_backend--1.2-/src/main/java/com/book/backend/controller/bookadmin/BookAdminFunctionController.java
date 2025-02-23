@@ -47,9 +47,9 @@ public class BookAdminFunctionController {
      * @param bookNumber 图书编号
      * @return R
      */
-    @GetMapping("query_book/{bookNumber}")
-    public R<String> queryBookExpireByBookNumber(@PathVariable("bookNumber") Long bookNumber) {
-        return booksService.queryBookExpireByBookNumber(bookNumber);
+    @GetMapping("query_book/{bookNumber}/{cardNumber}")
+    public R<String> queryBookExpireByBookNumber(@PathVariable("bookNumber") Long bookNumber, @PathVariable("cardNumber")Long cardNumber) {
+        return booksService.queryBookExpireByBookNumber(bookNumber, cardNumber);
     }
 
     /**
@@ -58,9 +58,9 @@ public class BookAdminFunctionController {
      * @param bookNumber 图书编号
      * @return R<Violation>
      */
-    @GetMapping("query_expire/{bookNumber}")
-    public R<ViolationDTO> queryExpireInformationByBookNumber(@PathVariable("bookNumber") Long bookNumber) {
-        return booksBorrowService.queryExpireInformationByBookNumber(bookNumber);
+    @GetMapping("query_expire/{bookNumber}/{cardNumber}")
+    public R<ViolationDTO> queryExpireInformationByBookNumber(@PathVariable("bookNumber") Long bookNumber, @PathVariable("cardNumber")Long cardNumber) {
+        return booksBorrowService.queryExpireInformationByBookNumber(bookNumber, cardNumber);
     }
 
     /**

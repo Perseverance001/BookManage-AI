@@ -5,7 +5,7 @@
     </div>
     <div class="banner">
       <div class="expireDays">
-        <p>还剩{{this.expireInfo.expireDays}}天</p>
+        <p>距逾期还剩{{this.expireInfo.expireDays}}天</p>
       </div>
       <div class="bookNumber">
         <el-input v-model="expireInfo.bookNumber" :readonly="true">
@@ -13,6 +13,12 @@
           <el-button slot="prepend" icon="el-icon-collection"> </el-button>
         </el-input>
       </div>
+        <div class="borrowDate">
+            <el-input v-model="expireInfo.borrowDate" :readonly="true">
+                <template slot="prepend">借书日期</template>
+                <el-button slot="prepend" icon="el-icon-date"></el-button
+                ></el-input>
+        </div>
       <div class="closeDate">
         <el-input v-model="expireInfo.closeDate" :readonly="true">
             <template slot="prepend">截止日期</template>
@@ -66,12 +72,14 @@ export default {
       returnInfo: {
         returnDate: "",
         violationMessage: "",
+          cardNumber:0,
         bookNumber:0,
         violationAdminId:0
       },
       expireInfo:{
-        expireDays:47,
-        bookNumber: 192,
+          borrowDate:"",
+        expireDays:8,
+        bookNumber: 798,
         closeDate: "",
         bookAdminId:0
       }
@@ -79,11 +87,12 @@ export default {
   },
   methods: {
     async getExpireInfo(){
-        // 先获取路由传参中的图书编号
+        // 先获取路由传参中的图书编号和借阅号
         const bookNumber = this.$route.query.bookNumber;
+        const cardNumber = this.$route.query.cardNumber;
+        this.returnInfo.cardNumber = cardNumber;
         // 发送axios请求
-        const {data:res} = await this.$http.get('bookadmin/query_expire/'+bookNumber);
-        // console.log(res);
+        const {data:res} = await this.$http.get('bookadmin/query_expire/' + bookNumber + '/' + cardNumber);
         if(res.status !== 200){
             return this.$message.error(res.msg)
         }

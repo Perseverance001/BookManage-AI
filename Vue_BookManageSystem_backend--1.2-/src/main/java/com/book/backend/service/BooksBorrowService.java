@@ -27,7 +27,7 @@ public interface BooksBorrowService extends IService<BooksBorrow> {
      * @param bookNumber 图书编号
      * @return R<Violation>
      */
-    R<ViolationDTO> queryExpireInformationByBookNumber(Long bookNumber);
+    R<ViolationDTO> queryExpireInformationByBookNumber(Long bookNumber, Long cardNumber);
 
     /**
      * 归还图书

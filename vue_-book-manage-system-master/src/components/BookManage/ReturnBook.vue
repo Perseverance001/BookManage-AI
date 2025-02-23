@@ -1,11 +1,16 @@
 <template>
   <div class="borrowbook_container">
-    <div class="header"><p>查看图书是否逾期</p></div>
+    <div class="header"><p>查询借阅记录</p></div>
     <div class="banner">
+        <div class="card_number">
+            <el-input placeholder="请输入借阅证号" v-model="cardNumber">
+                <el-button slot="prepend" icon="el-icon-s-order"></el-button>
+            </el-input>
+        </div>
       <div class="book_number">
         <el-input placeholder="请输入图书编号" v-model="bookNumber">
-          <el-button slot="prepend" icon="el-icon-collection"></el-button
-        ></el-input>
+          <el-button slot="prepend" icon="el-icon-collection"></el-button>
+        </el-input>
       </div>
       <div class="query_button">
         <el-button type="warning" @click="goExpire">查询</el-button>
@@ -18,6 +23,7 @@
 export default {
   data() {
     return {
+        cardNumber: "",
       bookNumber: "",
     };
   },
@@ -25,7 +31,7 @@ export default {
     async goExpire() {
       // 发送axios请求，携带图书编号  如果返回状态码为成功 跳转逾期的页面 否则提示未借出图书
       const { data: res } = await this.$http.get(
-        "bookadmin/query_book/" + this.bookNumber
+        "bookadmin/query_book/" + this.bookNumber + "/" + this.cardNumber
       );
       if (res.status !== 200) {
         return this.$message.error(
@@ -35,14 +41,16 @@ export default {
           }
         );
       }
-      // console.log(res);
-      // this.$message.success(res.msg);
-      this.$router.push({
-        name:"bookexpire",
-        query:{
-          bookNumber:this.bookNumber
-        }
-      });
+      this.$message.success(res.msg);
+      setTimeout(() => {
+          this.$router.push({
+              name:"bookexpire",
+              query:{
+                  bookNumber:this.bookNumber,
+                  cardNumber:this.cardNumber
+              }
+          });
+      },1000) // 延时1s跳转
     },
   },
 };

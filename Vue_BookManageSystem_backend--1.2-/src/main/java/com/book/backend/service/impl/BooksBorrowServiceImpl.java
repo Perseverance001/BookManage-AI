@@ -102,10 +102,10 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
      * 4.将截止日期、图书编号、逾期日期、封装到DTO，设置响应状态码和请求信息，返回前端
      */
     @Override
-    public R<ViolationDTO> queryExpireInformationByBookNumber(Long bookNumber) {
+    public R<ViolationDTO> queryExpireInformationByBookNumber(Long bookNumber, Long cardNumber) {
 
         LambdaQueryWrapper<BooksBorrow> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber).isNull(BooksBorrow::getReturnDate);
+        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber).eq(BooksBorrow::getCardNumber, cardNumber).isNull(BooksBorrow::getReturnDate);
         BooksBorrow bookBorrowRecord = this.getOne(queryWrapper);
         if (bookBorrowRecord == null) {
             return R.error("获取逾期信息失败");
@@ -123,7 +123,9 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
         // 获取逾期的天数
         long expireDay = between.toDays();
         ViolationDTO violationDTO = new ViolationDTO();
+        violationDTO.setBorrowDate(bookBorrowRecord.getBorrowDate());
         violationDTO.setExpireDays(expireDay);
+        violationDTO.setCardNumber(cardNumber);
         violationDTO.setBookNumber(bookNumber);
         violationDTO.setCloseDate(closeDate);
         R<ViolationDTO> result = new R<>();

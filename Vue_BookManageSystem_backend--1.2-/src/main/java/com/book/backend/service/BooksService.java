@@ -37,7 +37,7 @@ public interface BooksService extends IService<Books> {
      * @param bookNumber 图书编号
      * @return R
      */
-    R<String> queryBookExpireByBookNumber(Long bookNumber);
+    R<String> queryBookExpireByBookNumber(Long bookNumber, Long cardNumber);
 
     /**
      * 获取图书列表
