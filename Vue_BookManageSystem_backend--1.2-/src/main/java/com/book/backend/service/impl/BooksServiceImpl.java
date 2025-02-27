@@ -130,8 +130,14 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
         LambdaQueryWrapper<Books> queryWrapper1 = new LambdaQueryWrapper<>();
         queryWrapper1.eq(Books::getBookNumber, bookNumber);
         Books book = this.getOne(queryWrapper1);
+        // 检验图书状态是否已借完
         if ((book == null) || (book.getBookStatus().equals(Constant.BOOKDISABLE))) {
             VueBookException.cast(CommonError.QUERY_NULL);
+        }
+
+        // 检查图书剩余数量是否大于0
+        if (book.getBookQuantity() <= 0) {
+            return R.error("该图书已无剩余");
         }
 
         // 规则编号
@@ -140,7 +146,7 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
         queryWrapper2.eq(BookRule::getBookRuleId, ruleNumber);
         BookRule bookRule = bookRuleService.getOne(queryWrapper2);
         if (bookRule == null) {
-            return R.error("借阅图书失败");
+            return R.error("借阅规则编号有误，借阅图书失败");
         }
         // 可借天数
         Integer bookDays = bookRule.getBookDays();
@@ -156,11 +162,17 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
         if (!flag) {
             return R.error("借阅图书失败");
         }
-        book.setBookStatus(Constant.BOOKDISABLE);
+
+        // 使用乐观锁更新图书状态和剩余数量
+        book.setBookQuantity(book.getBookQuantity() - 1);
+        if (book.getBookQuantity() <= 0) {
+            book.setBookStatus(Constant.BOOKDISABLE);
+        }
         boolean update = this.update(book, queryWrapper1);
         if (!update) {
             return R.error("借阅图书失败");
         }
+
         Violation violation = new Violation();
         BeanUtils.copyProperties(booksBorrow1, violation, "borrowId");
         violation.setViolationId(null);
@@ -183,8 +195,15 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
     public R<String> queryBookExpireByBookNumber(Long bookNumber,Long cardNumber) {
 
         LambdaQueryWrapper<BooksBorrow> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber).eq(BooksBorrow::getCardNumber, cardNumber).isNull(BooksBorrow::getReturnDate);
-        BooksBorrow bookBorrowRecord = booksBorrowService.getOne(queryWrapper);
+        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber)
+                .eq(BooksBorrow::getCardNumber, cardNumber)
+                .isNull(BooksBorrow::getReturnDate)
+                .orderByAsc(BooksBorrow::getBorrowDate);
+        // 可能有多条同一书籍的借阅记录
+        List<BooksBorrow> bookBorrowList = booksBorrowService.list(queryWrapper);
+        // 仅获取最早的一条
+        BooksBorrow bookBorrowRecord = bookBorrowList.isEmpty() ? null : bookBorrowList.get(0);
+//        BooksBorrow bookBorrowRecord = booksBorrowService.getOne(queryWrapper);
 //        queryWrapper.eq(Books::getBookNumber, bookNumber);
 //        Books book = this.getOne(queryWrapper);
         if (bookBorrowRecord == null) {

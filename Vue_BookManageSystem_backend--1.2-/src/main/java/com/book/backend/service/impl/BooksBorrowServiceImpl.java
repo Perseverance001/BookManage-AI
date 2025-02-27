@@ -41,6 +41,9 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
     private BooksService booksService;
 
     @Autowired
+    private BooksBorrowService booksBorrowService;
+
+    @Autowired
     public BooksBorrowServiceImpl(@Lazy BooksService booksService) {
         this.booksService = booksService;
     }
@@ -105,8 +108,12 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
     public R<ViolationDTO> queryExpireInformationByBookNumber(Long bookNumber, Long cardNumber) {
 
         LambdaQueryWrapper<BooksBorrow> queryWrapper = new LambdaQueryWrapper<>();
-        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber).eq(BooksBorrow::getCardNumber, cardNumber).isNull(BooksBorrow::getReturnDate);
-        BooksBorrow bookBorrowRecord = this.getOne(queryWrapper);
+        queryWrapper.eq(BooksBorrow::getBookNumber, bookNumber)
+                .eq(BooksBorrow::getCardNumber, cardNumber)
+                .isNull(BooksBorrow::getReturnDate)
+                .orderByAsc(BooksBorrow::getBorrowDate);
+        List<BooksBorrow> list = booksBorrowService.list(queryWrapper);
+        BooksBorrow bookBorrowRecord = list.isEmpty() ? null : list.get(0);
         if (bookBorrowRecord == null) {
             return R.error("获取逾期信息失败");
         }
@@ -146,39 +153,65 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
     @Override
     public R<String> returnBook(Violation violation) {
 
+        // 获取图书编号
         Long bookNumber = violation.getBookNumber();
+        // 获取归还日期
         LocalDateTime returnDate = violation.getReturnDate();
+        // 检查归还日期是否为空，如果为空则返回错误信息
         if (returnDate == null) {
             return R.error("归还日期不能为空");
         }
+        // 获取违规信息和处理违规的管理员ID
         String violationMessage = violation.getViolationMessage();
         Integer violationAdminId = violation.getViolationAdminId();
+        // 创建查询条件构建器
         LambdaQueryWrapper<Violation> queryWrapper = new LambdaQueryWrapper<>();
         LambdaQueryWrapper<BooksBorrow> queryWrapper1 = new LambdaQueryWrapper<>();
         LambdaQueryWrapper<Books> queryWrapper2 = new LambdaQueryWrapper<>();
 
-        queryWrapper.eq(Violation::getBookNumber, bookNumber).isNull(Violation::getReturnDate);
-        queryWrapper1.eq(BooksBorrow::getBookNumber, bookNumber).isNull(BooksBorrow::getReturnDate);
+        // 设置查询条件：根据图书编号查询，且归还日期为空
+        queryWrapper.eq(Violation::getBookNumber, bookNumber)
+                .isNull(Violation::getReturnDate)
+                .orderByAsc(Violation::getBorrowDate);
+        queryWrapper1.eq(BooksBorrow::getBookNumber, bookNumber)
+                .isNull(BooksBorrow::getReturnDate)
+                .orderByAsc(BooksBorrow::getBorrowDate);
         queryWrapper2.eq(Books::getBookNumber, bookNumber);
-        Violation violation1 = violationService.getOne(queryWrapper);
-        BooksBorrow booksBorrow = this.getOne(queryWrapper1);
+        // 执行查询，获取违规记录、借书记录和图书信息
+        List<Violation> violationList = violationService.list(queryWrapper);
+        Violation violation1 = violationList.isEmpty() ? null : violationList.get(0);
+
+        List<BooksBorrow> booksBorrowList = booksBorrowService.list(queryWrapper1);
+        BooksBorrow booksBorrow = booksBorrowList.isEmpty() ? null : booksBorrowList.get(0);
+
         Books book = booksService.getOne(queryWrapper2);
+        // 检查查询结果，如果有任一查询结果为空，则返回错误信息
         if (violation1 == null || booksBorrow == null || book == null) {
             return R.error("归还图书失败");
         }
 
+        // 更新违规记录的信息，包括违规信息、归还日期和处理违规的管理员ID
         violation1.setViolationMessage(violationMessage);
         violation1.setReturnDate(returnDate);
         violation1.setViolationAdminId(violationAdminId);
+        // 更新借书记录的归还日期
         booksBorrow.setReturnDate(returnDate);
-        book.setBookStatus(Constant.BOOKAVAILABLE);
+        // 图书数量+1
+        book.setBookQuantity(book.getBookQuantity() + 1);
+        // 更新图书状态为可用
+        if (book.getBookQuantity() >= 1) {
+            book.setBookStatus(Constant.BOOKAVAILABLE);
+        }
+        // 执行更新操作
         boolean update1 = violationService.update(violation1, queryWrapper);
         boolean update2 = this.update(booksBorrow, queryWrapper1);
         boolean update3 = booksService.update(book, queryWrapper2);
+        // 检查更新结果，如果有任一更新失败，则返回错误信息
         if (!update1 || !update2 || !update3) {
             return R.error("归还图书失败");
         }
 
+        // 更新成功，返回成功信息
         return R.success(null, "归还图书成功");
     }
 
