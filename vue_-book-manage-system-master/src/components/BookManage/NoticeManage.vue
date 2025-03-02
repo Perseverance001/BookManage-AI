@@ -200,7 +200,6 @@ export default {
     },
     //让修改公告的对话框可见,并从数据库中回显数据
     async showEditDialog(id) {
-      this.loading = true;
       const {data:res} = await this.$http.get('bookadmin/get_notice/'+id);
       if(res.status !== 200){
       
