@@ -38,11 +38,7 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
     @Resource
     private ViolationService violationService;
 
-    private BooksService booksService;
-
-    @Autowired
-    private BooksBorrowService booksBorrowService;
-
+    private final BooksService booksService;
     @Autowired
     public BooksBorrowServiceImpl(@Lazy BooksService booksService) {
         this.booksService = booksService;
@@ -112,7 +108,7 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
                 .eq(BooksBorrow::getCardNumber, cardNumber)
                 .isNull(BooksBorrow::getReturnDate)
                 .orderByAsc(BooksBorrow::getBorrowDate);
-        List<BooksBorrow> list = booksBorrowService.list(queryWrapper);
+        List<BooksBorrow> list = this.list(queryWrapper);
         BooksBorrow bookBorrowRecord = list.isEmpty() ? null : list.get(0);
         if (bookBorrowRecord == null) {
             return R.error("获取逾期信息失败");
@@ -181,7 +177,7 @@ public class BooksBorrowServiceImpl extends ServiceImpl<BooksBorrowMapper, Books
         List<Violation> violationList = violationService.list(queryWrapper);
         Violation violation1 = violationList.isEmpty() ? null : violationList.get(0);
 
-        List<BooksBorrow> booksBorrowList = booksBorrowService.list(queryWrapper1);
+        List<BooksBorrow> booksBorrowList = this.list(queryWrapper1);
         BooksBorrow booksBorrow = booksBorrowList.isEmpty() ? null : booksBorrowList.get(0);
 
         Books book = booksService.getOne(queryWrapper2);

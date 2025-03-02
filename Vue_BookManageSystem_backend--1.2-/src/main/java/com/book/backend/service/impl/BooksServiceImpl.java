@@ -42,7 +42,7 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
     private ViolationService violationService;
     @Resource
     private BookTypeService bookTypeService;
-    private BooksBorrowService booksBorrowService;
+    private final BooksBorrowService booksBorrowService;
 
     @Autowired
     public BooksServiceImpl(@Lazy BooksBorrowService booksBorrowService) {
@@ -360,8 +360,7 @@ public class BooksServiceImpl extends ServiceImpl<BooksMapper, Books>
         HashMap<String, Integer> hashMap = new HashMap<>();
         List<BorrowTypeDTO> list = new ArrayList<>();
 
-        BooksBorrowService borrowService = booksBorrowService;
-        List<BooksBorrow> booksBorrowList = borrowService.list();
+        List<BooksBorrow> booksBorrowList = booksBorrowService.list();
         for (BooksBorrow booksBorrow : booksBorrowList) {
             Long bookNumber = booksBorrow.getBookNumber();
             LambdaQueryWrapper<Books> queryWrapper = new LambdaQueryWrapper<>();
