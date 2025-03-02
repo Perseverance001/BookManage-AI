@@ -82,6 +82,7 @@ public class SparkBaseListener extends WebSocketListener {
     public final void onMessage(@NotNull WebSocket webSocket, @NotNull String text) {
         SparkResponse sparkResponse;
 
+        // TODO
         // 解析响应
         try {
             sparkResponse = objectMapper.readValue(text, SparkResponse.class);

@@ -2,7 +2,7 @@
   <div class="comment_container">
     <div class="backgroundImg">
       <img
-        src="https://xxx.xiaobaitiao.icu/img/icu/202312211243628.jpg"
+        src="https://4kwallpapers.com/images/walls/thumbs/21437.jpg"
         alt=""
       />
     </div>
@@ -23,7 +23,7 @@
       <div class="addMain">
         <el-input
           placeholder="请输入内容"
-          v-model.trim="input"
+          v-model="input"
           class="input-with-select"
           @keyup.enter.native="addContent"
         >
@@ -59,7 +59,7 @@ export default {
       barrage: {
         id: "",
         avatar:
-          "https://img0.baidu.com/it/u=825023390,3429989944&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500",
+          "https://4kwallpapers.com/images/walls/thumbs/21513.jpg",
         msg: "",
         time: "",
         type: MESSAGE_TYPE.NORMAL,

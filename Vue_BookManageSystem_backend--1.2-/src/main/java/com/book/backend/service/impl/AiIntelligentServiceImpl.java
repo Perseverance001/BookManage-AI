@@ -63,9 +63,9 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
 
     // todo 图书管理系统 1.2 版本设置认证信息 讯飞星火
     {
-        sparkClient.appid = "xxxx";
-        sparkClient.apiKey = "xxxxx";
-        sparkClient.apiSecret = "xxxxxx";
+        sparkClient.appid = "163999cf";
+        sparkClient.apiKey = "fbfc2af4b9b48dfbdeb0a28c4ef12b5e";
+        sparkClient.apiSecret = "OGQxMDJiMTRmMmIzYTI1ZmQzODk3NjU5";
     }
     @Override
     public R<String> getGenResult(AiIntelligent aiIntelligent) {
@@ -103,7 +103,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
         List<Books> list = booksService.list();
         StringBuilder stringBuilder = new StringBuilder();
         HashSet<String> hashSet = new HashSet<>();
-        String presetInformation = "请根据数据库内容和游客信息作出推荐,书籍优先选择数据库里面有的，如果游客喜欢的书籍，数据库没有，你可能根据自身的知识去推荐，可以是一本也可以是多本，但不可以超过三本书，根据游客喜欢的信息作出推荐。如果用户问的问题与图书推荐无关，请拒绝回答！";
+        String presetInformation = "请根据数据库内容和游客信息做出推荐,书籍优先选择数据库里面有的，如果游客喜欢的书籍，数据库没有，你可能根据自身的知识去推荐，可以是一本也可以是多本，但不可以超过三本书，根据游客喜欢的信息作出推荐。如果用户问的问题与图书无关，请拒绝回答！提示提问与图书相关的问题。";
 
         stringBuilder.append(presetInformation).append("\n").append("数据库内容: ");
         for (Books books : list) {
@@ -128,10 +128,12 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
         ExecutorService executor = Executors.newSingleThreadExecutor();
         // 消息列表，可以在此列表添加历史对话记录
         List<SparkMessage> messages = new ArrayList<>();
-        historyData.forEach(item->{
-            messages.add(SparkMessage.userContent(item.getInputMessage()));
-            messages.add(SparkMessage.assistantContent(item.getAiResult()));
-        });
+        if (historyData != null) {
+            historyData.forEach(item->{
+                messages.add(SparkMessage.userContent(item.getInputMessage()));
+                messages.add(SparkMessage.assistantContent(item.getAiResult()));
+            });
+        }
         messages.add(SparkMessage.userContent(stringBuilder.toString()));
         // 构造请求
         SparkRequest sparkRequest = SparkRequest.builder()
@@ -202,7 +204,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
         queryWrapper.orderByDesc("create_time");
         queryWrapper.last("LIMIT 5");
         List<AiIntelligent> list = this.list(queryWrapper);
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return R.success(null, "用户暂时没有和AI的聊天记录");
         }
         Collections.reverse(list);

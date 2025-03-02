@@ -31,7 +31,6 @@ public class UserInterfaceInfo implements Serializable {
 
     /**
      * 总共调用接口次数
-
      */
     private Integer totalNum;
 
