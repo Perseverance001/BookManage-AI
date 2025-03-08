@@ -61,12 +61,6 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
      */
     SparkClient sparkClient = new SparkClient();
 
-    // todo 图书管理系统 1.2 版本设置认证信息 讯飞星火
-    {
-        sparkClient.appid = "163999cf";
-        sparkClient.apiKey = "fbfc2af4b9b48dfbdeb0a28c4ef12b5e";
-        sparkClient.apiSecret = "OGQxMDJiMTRmMmIzYTI1ZmQzODk3NjU5";
-    }
     @Override
     public R<String> getGenResult(AiIntelligent aiIntelligent) {
         // 判断用户输入文本是否过长，超过128字，直接返回，防止资源耗尽
@@ -103,7 +97,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
         List<Books> list = booksService.list();
         StringBuilder stringBuilder = new StringBuilder();
         HashSet<String> hashSet = new HashSet<>();
-        String presetInformation = "请根据数据库内容和游客信息做出推荐,书籍优先选择数据库里面有的，如果游客喜欢的书籍，数据库没有，你可能根据自身的知识去推荐，可以是一本也可以是多本，但不可以超过三本书，根据游客喜欢的信息作出推荐。如果用户问的问题与图书无关，请拒绝回答！提示提问与图书相关的问题。";
+        String presetInformation = "你是一位了不起的图书管理员，拥有全网最丰富的图书信息，请根据数据库内容和用户信息做出推荐,书籍优先选择数据库里面有的，你也可以根据自身的知识去推荐数据库种不存在的，但是要在最后表明本馆目前没有这些书籍，推荐的书籍不可以超过三本书，根据用户喜欢的信息作出推荐。如果用户问的问题与图书无关，请拒绝回答！提示请用户提问与图书相关的问题。";
 
         stringBuilder.append(presetInformation).append("\n").append("数据库内容: ");
         for (Books books : list) {
@@ -113,14 +107,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
             }
         }
         stringBuilder.append("\n");
-
-        stringBuilder.append("游客信息: ").append(message).append("\n");
-//        list.forEach(System.out::println);
-//        System.out.println(stringBuilder.toString());
-
-        // 发送请求给AI，进行对话 由讯飞星火模型切换为阿里AI模型
-        // 超时判断 利用ExecutorService
-//
+        stringBuilder.append("用户信息: ").append(message).append("\n");
         // 调用之前先获取该用户最近的五条历史记录
         R<List<AiIntelligent>> history = aiIntelligentService.getAiInformationByUserId(user_id);
         List<AiIntelligent> historyData = history.getData();
@@ -145,11 +132,12 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
                 // V3.0取值为[1,8192]
                 .maxTokens(2048)
                 // 核采样阈值。用于决定结果随机性,取值越高随机性越强即相同的问题得到的不同答案的可能性越高 非必传,取值为[0,1],默认为0.5
-                .temperature(0.2)
+                .temperature(0.5)
                 .build();
         int timeout = 25; // 超时时间，单位为秒
         Future<String> future = executor.submit(() -> {
             try {
+                System.out.println("用户提问：" + message);
                 // 同步调用
                 StopWatch stopWatch = new StopWatch();
                 stopWatch.start();

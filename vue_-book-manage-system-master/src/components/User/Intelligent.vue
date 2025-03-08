@@ -3,13 +3,12 @@
     <h2 style="text-align: center;color:deepskyblue;">AI 智能推荐 byPer</h2>
     <el-card class="chat" style="margin-top:10px;height: 80vh;border-radius: 15px;border-color: #ccc;">
       <el-card class="main_chat">
-        <div v-for="item in messages" :key="message.id" class="message">
+        <div v-for="item in messages" :key="item.id" class="message">
           <div v-if="item.inputMessage!=null&&item.inputMessage!==''" class="user-message">
             {{ item.inputMessage }}
           </div>
-          <div v-if="item.aiResult!=null&&item.aiResult!==''" class="bot-message">{{ item.aiResult }}</div>
+          <div v-if="item.aiResult!=null&&item.aiResult!==''" class="bot-message" v-html="parseMarkdown(item.aiResult)"></div>
         </div>
-
       </el-card>
       <el-input
           placeholder="请输入内容，例如：我喜欢动物类的书籍，请给我推荐"
@@ -24,13 +23,14 @@
             @click="sendMessage"
             :disabled="loading"
         ></el-button>
-      </el-input
-      >
+      </el-input>
     </el-card>
   </div>
 </template>
 
 <script>
+import { marked } from 'marked';
+
 export default {
   data() {
     return {
@@ -115,9 +115,16 @@ export default {
         message: res.msg,
         duration: 1500
       })
-      res.data.forEach((item) => {
-        this.messages.push(item);
-      })
+      this.messages = res.data; // 直接赋值给 messages，确保数据更新
+    },
+
+    /**
+     * 解析 Markdown 文本
+     * @param {string} markdownText - 需要解析的 Markdown 文本
+     * @returns {string} - 解析后的 HTML 字符串
+     */
+    parseMarkdown(markdownText) {
+      return marked(markdownText);
     }
   },
   created() {
@@ -136,7 +143,6 @@ export default {
   margin-bottom: 10px;
   height: 70vh;
   background-size: cover;
-  background: url(https://xxx.xiaobaitiao.icu/img/icu/202312211243632.jpg) no-repeat 0px 0px;
   border-radius: 10px;
   overflow-y: scroll;
 }
@@ -160,7 +166,7 @@ export default {
 
 .bot-message {
   background-color: #f4f6f8;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   text-align: left;
   align-self: flex-start;

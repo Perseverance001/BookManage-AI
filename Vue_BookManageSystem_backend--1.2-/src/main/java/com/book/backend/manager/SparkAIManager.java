@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.gson.Gson;
 import okhttp3.*;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.Mac;
@@ -20,13 +21,11 @@ public class SparkAIManager extends WebSocketListener {
     // 地址与鉴权信息  https://spark-api.xf-yun.com/v1.1/chat   1.5地址  domain参数为general
     // 地址与鉴权信息  https://spark-api.xf-yun.com/v2.1/chat   2.0地址  domain参数为generalv2
     // todo 目前已经有三种版本 请根据您的模型替换 hostURL 讯飞星火官网地址：https://xinghuo.xfyun.cn/sparkapi
-    public static final String hostUrl = "https://spark-api.xf-yun.com/v2.1/chat";
-    // todo 替换成你自己的 appid
-    public static final String appid = "xxxxx";
-    // todo 替换成你自己的 apiSecret
-    public static final String apiSecret = "xxxxx";
-    // todo 替换成你自己的 apiKey
-    public static final String apiKey = "xxxxx";
+    public static final String hostUrl = "https://spark-api.xf-yun.com/v4.0/chat";
+    public static final String domain = "4.0Ultra";
+    public static final String appid = "163999cf";
+    public static final String apiSecret = "OGQxMDJiMTRmMmIzYTI1ZmQzODk3NjU5";
+    public static final String apiKey = "fbfc2af4b9b48dfbdeb0a28c4ef12b5e";
 
     public static List<RoleContent> historyList=new ArrayList<>(); // 对话历史存储集合
 
@@ -113,7 +112,7 @@ public class SparkAIManager extends WebSocketListener {
 
                 JSONObject parameter=new JSONObject(); // parameter参数
                 JSONObject chat=new JSONObject();
-                chat.put("domain","generalv2");
+                chat.put("domain",domain);
                 chat.put("temperature",0.5);
                 chat.put("max_tokens",4096);
                 parameter.put("chat",chat);

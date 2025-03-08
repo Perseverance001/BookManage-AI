@@ -15,12 +15,19 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class BigModelNew extends WebSocketListener {
-    // 地址与鉴权信息  https://spark-api.xf-yun.com/v1.1/chat   1.5地址  domain参数为general
-    // 地址与鉴权信息  https://spark-api.xf-yun.com/v2.1/chat   2.0地址  domain参数为generalv2
-    public static final String hostUrl = "https://spark-api.xf-yun.com/v2.1/chat";
-    public static final String appid = "xxxxx";
-    public static final String apiSecret = "xxxxx";
-    public static final String apiKey = "xxxxxxx";
+    // 各版本的hostUrl及其对应的domian参数，具体可以参考接口文档 https://www.xfyun.cn/doc/spark/Web.html
+    // Spark Lite      https://spark-api.xf-yun.com/v1.1/chat      domain参数为lite
+    // Spark Pro       https://spark-api.xf-yun.com/v3.1/chat      domain参数为generalv3
+    // Spark Pro-128K  https://spark-api.xf-yun.com/chat/pro-128k  domain参数为pro-128k
+    // Spark Max       https://spark-api.xf-yun.com/v3.5/chat      domain参数为generalv3.5
+    // Spark Max-32K   https://spark-api.xf-yun.com/chat/max-32k   domain参数为max-32k
+    // Spark4.0 Ultra  https://spark-api.xf-yun.com/v4.0/chat      domain参数为4.0Ultra
+
+    public static final String hostUrl = "https://spark-api.xf-yun.com/v4.0/chat";
+    public static final String domain = "4.0Ultra";
+    public static final String appid = "163999cf";
+    public static final String apiSecret = "OGQxMDJiMTRmMmIzYTI1ZmQzODk3NjU5";
+    public static final String apiKey = "fbfc2af4b9b48dfbdeb0a28c4ef12b5e";
 
     public static List<RoleContent> historyList=new ArrayList<>(); // 对话历史存储集合
 
@@ -30,7 +37,7 @@ public class BigModelNew extends WebSocketListener {
     public static  String NewQuestion = "";
 
     public static final Gson gson = new Gson();
-    public static MyThread myThread;
+
     // 个性化参数
     private String userId;
     private Boolean wsCloseFlag;
@@ -43,13 +50,15 @@ public class BigModelNew extends WebSocketListener {
     }
 
     // 主函数
-    public String sendMessageAndGetResponse(String message) throws Exception {
+    public void API(String question) throws Exception {
         // 个性化参数入口，如果是并发使用，可以在这里模拟
         while (true){
             if(totalFlag){
-                System.out.print("我：");
+//                Scanner scanner=new Scanner(System.in);
+                System.out.print("我：" + question);
                 totalFlag=false;
-                NewQuestion=message;
+//                NewQuestion=scanner.nextLine();
+                NewQuestion=question;
                 // 构建鉴权url
                 String authUrl = getAuthUrl(hostUrl, apiKey, apiSecret);
                 OkHttpClient client = new OkHttpClient.Builder().build();
@@ -61,10 +70,7 @@ public class BigModelNew extends WebSocketListener {
                             false));
                 }
             }else{
-                Thread.sleep(10000);
-               return totalAnswer;
-
-
+                Thread.sleep(200);
             }
         }
     }
@@ -104,7 +110,7 @@ public class BigModelNew extends WebSocketListener {
 
                 JSONObject parameter=new JSONObject(); // parameter参数
                 JSONObject chat=new JSONObject();
-                chat.put("domain","generalv2");
+                chat.put("domain",domain);
                 chat.put("temperature",0.5);
                 chat.put("max_tokens",4096);
                 parameter.put("chat",chat);
@@ -146,7 +152,6 @@ public class BigModelNew extends WebSocketListener {
                     }
                 }
                 webSocket.close(1000, "");
-                myThread.interrupt();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -157,9 +162,8 @@ public class BigModelNew extends WebSocketListener {
     public void onOpen(WebSocket webSocket, Response response) {
         super.onOpen(webSocket, response);
         System.out.print("大模型：");
-        myThread= new MyThread(webSocket);
+        MyThread myThread = new MyThread(webSocket);
         myThread.start();
-
     }
 
     @Override
@@ -173,7 +177,7 @@ public class BigModelNew extends WebSocketListener {
         }
         List<Text> textList = myJsonParse.payload.choices.text;
         for (Text temp : textList) {
-//            System.out.print(temp.content);
+            System.out.print(temp.content);
             totalAnswer=totalAnswer+temp.content;
         }
         if (myJsonParse.header.status == 2) {
