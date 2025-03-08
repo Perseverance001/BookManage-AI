@@ -19,11 +19,10 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside :width="isCollapse ? '64px' : '200px'">
-        <div class="toggle-button" @click="toggleCollapse">|||</div>
+      <el-aside width="200px">
         <!-- 侧边栏菜单区域 -->
         <el-menu :default-active="activePath" class="el-menu-vertical-demo" background-color="#fff" text-color="black"
-          active-text-color="#ffd04b" :router="true" :collapse="isCollapse" :collapse-transition="false">
+          active-text-color="#ffd04b" :router="true" :collapse-transition="false">
           <el-menu-item index="index" @click="saveNavState('index')">
             <i class="iconfont icon-shouye"></i>
             <span slo="title">首页</span>
@@ -93,8 +92,6 @@
 </template>
 
 <script>
-
-
 export default {
   data() {
     return {
@@ -107,8 +104,6 @@ export default {
         102: "iconfont icon-danju",
         145: "iconfont icon-baobiao",
       },
-      //是否折叠
-      isCollapse: false,
       //被激活的链接地址
       activePath: "",
       user: {
@@ -124,37 +119,15 @@ export default {
       },
     };
   },
-  async created() {
-    // this.getMenuList();
-    this.activePath = window.sessionStorage.getItem("activePath");
-    // console.log(this.activePath)
-    // 先获取sessionStorage中的id
-    const stringId = window.sessionStorage.getItem("userId");
-    const id = parseInt(stringId);
-    this.user.userId = id;
-    const { data: res } = await this.$http.post("user/getData", this.user);
-    console.log(res);
-    window.sessionStorage.setItem('cardNumber', res.data.cardNumber)
-    this.user = res.data;
-  },
-  async mounted() { },
   methods: {
     logout() {
       window.sessionStorage.clear();
       this.$router.push("/login");
     },
 
-
-    //点击按钮，切换菜单的折叠与展开
-    toggleCollapse() {
-      this.isCollapse = !this.isCollapse;
-    },
-    //保存链接的激活状态
     saveNavState(activePath) {
-      // console.log("first")
       window.sessionStorage.setItem("activePath", activePath);
       this.activePath = activePath;
-      // console.log(this.activePath);
     },
     toGitee() {
       console.log(1123);

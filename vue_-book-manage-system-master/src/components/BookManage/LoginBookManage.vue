@@ -36,10 +36,8 @@
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="login" :loading="loginLoading"
-            >登录
-          </el-button>
-          <el-button type="info" @click="resetLoginForm">重置</el-button>
+            <el-button type="info" @click="resetLoginForm">重置</el-button>
+            <el-button type="primary" @click="login" :loading="loginLoading">登录</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -77,15 +75,8 @@
             </p>
             <span style="font-weight: bold;color:white;font-size: 16px">root登录</span>
         </div>
-<!--      <span>-->
-<!--          <i class="iconfont icon-user_root" @click="goUser" style="font-size: 40px"></i>-->
-<!--          <i class="iconfont icon-guanliyuan1" @click="goAdmin"></i>-->
-<!--      </span>-->
       <span>
       </span>
-<!--        <span style="font-weight: bold;color:white;">-->
-<!--        登录页面切换-->
-<!--      </span>-->
     </div>
     <div class="footer2">
 <!--      <el-popover placement="top-start" :width="150" trigger="hover">-->

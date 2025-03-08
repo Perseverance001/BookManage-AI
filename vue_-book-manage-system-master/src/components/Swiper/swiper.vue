@@ -6,24 +6,21 @@
       <!-- 每个节点 -->
       <div class="swiper-slide">
         <img
-          data-src="https://img0.baidu.com/it/u=2958632508,1917305803&fm=253&fmt=auto&app=120&f=JPEG?w=750&h=500"
+          src="https://4kwallpapers.com/images/walls/thumbs_3t/12870.jpg"
           alt="swiper1"
-          class="swiper-lazy"
         />
       </div>
       <div class="swiper-slide">
         <img
-          data-src="https://4kwallpapers.com/images/walls/thumbs_3t/911.jpg"
+          src="https://4kwallpapers.com/images/walls/thumbs_3t/911.jpg"
           alt="swiper2"
-          class="swiper-lazy"
         />
         <div class="swiper-lazy-preloader"></div>
       </div>
       <div class="swiper-slide">
         <img
-          data-src="https://4kwallpapers.com/images/walls/thumbs_3t/12870.jpg"
+          src="https://4kwallpapers.com/images/walls/thumbs/14081.jpg"
           alt="swiper3"
-          class="swiper-lazy"
         />
         <div class="swiper-lazy-preloader"></div>
       </div>

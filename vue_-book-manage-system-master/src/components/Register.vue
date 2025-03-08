@@ -26,9 +26,9 @@
         </el-form-item>
         <!-- 按钮区域 -->
         <el-form-item class="btns">
-          <el-button type="primary" @click="register" :loading="registerLoading">注册</el-button>
-          <el-button type="info" @click="resetRegisterForm">重置</el-button>
-          <el-button type="success" @click="goLogin">登录</el-button> <!-- 添加登录按钮 -->
+            <el-button type="success" @click="goLogin">登录</el-button> <!-- 添加登录按钮 -->
+            <el-button type="info" @click="resetRegisterForm">重置</el-button>
+            <el-button type="primary" @click="register" :loading="registerLoading">注册</el-button>
         </el-form-item>
       </el-form>
     </div>
