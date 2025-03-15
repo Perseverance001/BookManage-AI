@@ -119,6 +119,20 @@ export default {
       },
     };
   },
+    async created() {
+        // this.getMenuList();
+        this.activePath = window.sessionStorage.getItem("activePath");
+        // console.log(this.activePath)
+        // 先获取sessionStorage中的id
+        const stringId = window.sessionStorage.getItem("userId");
+        const id = parseInt(stringId);
+        this.user.userId = id;
+        const { data: res } = await this.$http.post("user/getData", this.user);
+        console.log(res);
+        window.sessionStorage.setItem('cardNumber', res.data.cardNumber)
+        this.user = res.data;
+    },
+    async mounted() { },
   methods: {
     logout() {
       window.sessionStorage.clear();

@@ -15,14 +15,12 @@
           src="https://4kwallpapers.com/images/walls/thumbs_3t/911.jpg"
           alt="swiper2"
         />
-        <div class="swiper-lazy-preloader"></div>
       </div>
       <div class="swiper-slide">
         <img
           src="https://4kwallpapers.com/images/walls/thumbs/14081.jpg"
           alt="swiper3"
         />
-        <div class="swiper-lazy-preloader"></div>
       </div>
     </div>
 

@@ -196,7 +196,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
             return R.success(null, "用户暂时没有和AI的聊天记录");
         }
         Collections.reverse(list);
-        return R.success(list, "获取和AI最近的5条聊天记录成功");
+        return R.success(list, "获取历史聊天信息成功");
     }
     public static int getSleepTimeStrategy(String message){
         int length = message.length();
