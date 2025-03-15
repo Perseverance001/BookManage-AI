@@ -23,7 +23,7 @@ spring:
 
 server:
   port: 8888 #配置后端接口的端口号
-  servlet: #配置后端请求的根路径  http://127.0.0.1:8889/api
+  servlet: #配置后端请求的根路径  http://127.0.0.1:8888/api
     context-path: "/api"
 #jwt config
 jwt:

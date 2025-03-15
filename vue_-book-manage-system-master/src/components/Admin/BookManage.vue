@@ -23,7 +23,7 @@
             <i class="el-icon-plus"></i> 添加书籍</el-button>
         </el-col>
         <el-col :span="3" style="float:right">
-          <el-upload class="upload-demo" ref="upload" name="files" action="http://localhost:8889/api/admin/updown"
+          <el-upload class="upload-demo" ref="upload" name="files" action="http://localhost:8888/api/admin/updown"
             :on-preview="handlePreview" :on-remove="handleRemove"  :headers="headers" 
             :file-list="fileList"
             :on-success="onSuccess"
@@ -92,7 +92,7 @@
       </el-table>
       <!-- 分页查询区域 -->
       <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange"
-        :current-page="queryInfo.pageNum" :page-sizes="[1, 2, 3, 4, 5]" :page-size="queryInfo.pageSize"
+        :current-page="queryInfo.pageNum" :page-sizes="[5, 10, 20, 50, 100]" :page-size="queryInfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper" :total="this.total">
       </el-pagination>
       <!-- 修改规则的对话框 -->
@@ -106,9 +106,10 @@
           </el-form-item>
           <el-form-item label="图书馆">
             <el-radio-group v-model="editForm.bookLibrary">
-              <el-radio-button label="南图"></el-radio-button>
-              <el-radio-button label="北图"></el-radio-button>
-              <el-radio-button label="教师之家"></el-radio-button>
+              <el-radio-button label="城市图书馆"></el-radio-button>
+              <el-radio-button label="市立图书馆"></el-radio-button>
+              <el-radio-button label="中央图书馆"></el-radio-button>
+              <el-radio-button label="大学图书馆"></el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="分类">
@@ -122,13 +123,16 @@
           </el-form-item>
           <el-form-item label="状态" prop="bookStatus">
             <el-radio-group v-model="editForm.bookStatus">
-              <el-radio label="已借出">已借出</el-radio>
-              <el-radio label="未借出">未借出</el-radio>
+              <el-radio label="借完">借完</el-radio>
+              <el-radio label="有书">有书</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="书籍简介" prop="bookDescription">
             <el-input type="textarea" v-model="editForm.bookDescription"></el-input>
           </el-form-item>
+            <el-form-item label="书籍数量" prop="bookQuantity">
+                <el-input type="input" v-model="editForm.bookQuantity"></el-input>
+            </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取 消</el-button>
@@ -146,9 +150,10 @@
           </el-form-item>
           <el-form-item label="图书馆">
             <el-radio-group v-model="addForm.bookLibrary">
-              <el-radio-button label="南图"></el-radio-button>
-              <el-radio-button label="北图"></el-radio-button>
-              <el-radio-button label="教师之家"></el-radio-button>
+                <el-radio-button label="城市图书馆"></el-radio-button>
+                <el-radio-button label="市立图书馆"></el-radio-button>
+                <el-radio-button label="中央图书馆"></el-radio-button>
+                <el-radio-button label="大学图书馆"></el-radio-button>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="分类">
@@ -162,13 +167,16 @@
           </el-form-item>
           <el-form-item label="状态" prop="bookStatus">
             <el-radio-group v-model="addForm.bookStatus">
-              <el-radio label="已借出">已借出</el-radio>
-              <el-radio label="未借出">未借出</el-radio>
+              <el-radio label="借完">借完</el-radio>
+              <el-radio label="有书">有书</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="书籍简介" prop="bookDescription">
             <el-input type="textarea" v-model="addForm.bookDescription"></el-input>
           </el-form-item>
+            <el-form-item label="书籍数量" prop="bookQuantity">
+                <el-input type="input" v-model="addForm.bookQuantity"></el-input>
+            </el-form-item>
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
@@ -189,11 +197,12 @@ export default {
       editForm: {
         bookName: "",
         bookAuthor: "",
-        bookLibrary: "南图",
+        bookLibrary: "",
         bookType: "",
         bookLocation: "",
         bookStatus: "",
         bookDescription: "",
+        bookQuantity: null,
       },
       editFormRules: {
         bookName: [
@@ -208,16 +217,20 @@ export default {
         bookDescription: [
           { required: true, message: "图书介绍不能为空", trigger: "blur" },
         ],
+          bookQuantity: [
+              { required: true, message: "图书数量不能为空", trigger: "blur" },
+          ],
       },
       addDialogVisible: false,
       addForm: {
         bookName: "",
         bookAuthor: "",
-        bookLibrary: "南图",
+        bookLibrary: "",
         bookTypeNumber: "",
         bookLocation: "",
         bookStatus: "",
         bookDescription: "",
+        bookQuantity: null,
       },
       addFormRules: {
         bookName: [
@@ -232,6 +245,9 @@ export default {
         bookDescription: [
           { required: true, message: "图书介绍不能为空", trigger: "blur" },
         ],
+          bookQuantity: [
+              { required: true, message: "图书数量不能为空", trigger: "blur" },
+          ],
       },
       searchs: [
         {
@@ -505,7 +521,7 @@ export default {
       this.$refs.upload.submit();
         this.$message.success({
           duration: 1500,
-          message: "Excel批量导入图书成功"
+          message: "Excel批量导入图书ing"
         })
     },
     handleRemove(file, fileList) {

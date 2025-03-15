@@ -27,7 +27,7 @@
 <!--        </a>-->
         <div>
           <el-avatar
-            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+            src="https://4kwallpapers.com/images/walls/thumbs_2t/11498.png"
             :size="35"
             style="margin-right: 10px"
           ></el-avatar>

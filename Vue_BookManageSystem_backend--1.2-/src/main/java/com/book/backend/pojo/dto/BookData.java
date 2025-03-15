@@ -58,6 +58,12 @@ public class BookData implements Serializable {
     @ExcelProperty(value="图书描述",index = 6)
     private String bookDescription;
 
+    /**
+     * 图书数量
+     */
+    @ExcelProperty(value="图书数量",index = 7)
+    private Integer bookQuantity;
+
 
 
 }

@@ -161,7 +161,7 @@ export default {
         this.loginLoading = false;
         window.sessionStorage.setItem("token", res.map.token);
         window.sessionStorage.setItem("bookAdminId", res.map.id);
-        this.$router.push("/homemange");
+        this.$router.push("/borrowbook");
         // window.sessionStorage.setItem("token", token);
         // this.$router.push("/home"); //跳转到home页面下
       });

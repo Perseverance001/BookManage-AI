@@ -148,7 +148,7 @@ export default {
         // console.log(res);
         window.sessionStorage.setItem("token", res.map.token);
         window.sessionStorage.setItem("adminId", res.map.id);
-        this.$router.push("/homeadmin");
+        this.$router.push("/bookmanage");
       });
     },
     goUser() {
