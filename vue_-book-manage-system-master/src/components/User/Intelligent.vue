@@ -58,13 +58,13 @@ export default {
         })
       }
       // 先判断文本内容是否为空或者是无意义的数字，如果是提示用户信息
-      if (/[\da-zA-Z]/.test(this.inputMessage)) {
-        this.$message.info({
-          message: "请不要输入无意义的内容",
-          duration: 1000
-        });
-        return;
-      }
+      // if (/[\da-zA-Z]/.test(this.inputMessage)) {
+      //   this.$message.info({
+      //     message: "请不要输入无意义的内容",
+      //     duration: 1000
+      //   });
+      //   return;
+      // }
       if (this.inputMessage.trim() !== "") {
         var userId = window.sessionStorage.getItem("userId");
         this.messages.push({

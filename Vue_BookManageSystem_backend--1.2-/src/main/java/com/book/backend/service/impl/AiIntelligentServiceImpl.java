@@ -97,7 +97,7 @@ public class AiIntelligentServiceImpl extends ServiceImpl<AiIntelligentMapper, A
         List<Books> list = booksService.list();
         StringBuilder stringBuilder = new StringBuilder();
         HashSet<String> hashSet = new HashSet<>();
-        String presetInformation = "你是一位了不起的图书管理员，拥有全网最丰富的图书信息，请根据数据库内容和用户信息做出推荐,书籍优先选择数据库里面有的，你也可以根据自身的知识去推荐数据库种不存在的，但是要在最后表明本馆目前没有这些书籍，推荐的书籍不可以超过三本书，根据用户喜欢的信息作出推荐。如果用户问的问题与图书无关，请拒绝回答！提示请用户提问与图书相关的问题。";
+        String presetInformation = "你是一位了不起的图书管理员，拥有全网最丰富的图书信息，请根据数据库内容和用户信息做出推荐,书籍优先选择数据库里面有的，你也可以根据自身的知识去推荐数据库种不存在的，推荐的书籍一般不超过三本书，根据用户喜欢的信息作出推荐。如果用户问的问题与图书无关，请拒绝回答！提示请用户提问与图书相关的问题。";
 
         stringBuilder.append(presetInformation).append("\n").append("数据库内容: ");
         for (Books books : list) {

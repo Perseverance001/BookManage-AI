@@ -25,11 +25,9 @@ import java.util.*;
  */
 public class SparkClient {
 
-    public String appid;
-
-    public String apiKey;
-
-    public String apiSecret;
+    public static final String appid = "163999cf";
+    public static final String apiSecret = "OGQxMDJiMTRmMmIzYTI1ZmQzODk3NjU5";
+    public static final String apiKey = "fbfc2af4b9b48dfbdeb0a28c4ef12b5e";
 
     public OkHttpClient client = new OkHttpClient.Builder().build();
 

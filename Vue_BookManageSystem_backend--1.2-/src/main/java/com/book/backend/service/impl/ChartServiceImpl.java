@@ -201,9 +201,9 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart>
                 "原始数据：\n" +
                 "{csv格式的原始数据，用,作为分隔符}\n" +
                 "请根据这两部分内容，按照以下指定格式生成内容（此外不要输出任何多余的开头、结尾、注释）\n" +
-                "【【【【【\n" +
+                "【\n" +
                 "{前端 Echarts V5 的 option 配置对象js代码，合理地将数据进行可视化，不要生成任何多余的内容，比如注释}\n" +
-                "【【【【【\n" +
+                "【\n" +
                 "{明确的数据分析结论、越详细越好，不要生成多余的注释}"+"\n";
         // 构造用户输入
         StringBuilder userInput = new StringBuilder();
@@ -226,19 +226,14 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart>
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        String[] splits = result.split("【【【【【");
+        String[] splits = result.split("【");
         if (splits.length < 3) {
             return R.error("AI生成错误，请稍后重试");
         }
-        Pattern pattern = Pattern.compile("option = ([^;]+);");
-        Matcher matcher = pattern.matcher(splits[1]);
-        String genChart = "";
-        if (matcher.find()) {
-            genChart = matcher.group(1).trim();
-        }else{
-            return R.error("AI生成错误，请稍后重试");
-        }
-        String genResult = splits[2].split("}")[1].trim();
+
+        String genChart = splits[1].replace("】","").trim();
+        String[] genResults = splits[2].replace("】","").split(":");
+        String genResult = genResults[1].replace("\"","").replace("}","").trim();
         Gson gson = new Gson();
         Object objectChart = gson.fromJson(genChart, Object.class);
         // 插入到数据库
