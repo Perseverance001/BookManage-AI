@@ -35,11 +35,11 @@ public class SparkClientTest {
     SparkClient sparkClient = new SparkClient();
 
     // 设置认证信息
-    {
-        sparkClient.appid = "xxxxxxx";
-        sparkClient.apiKey = "xxxxx";
-        sparkClient.apiSecret = "xxxxxx";
-    }
+//    {
+//        sparkClient.appid = "xxxxxxx";
+//        sparkClient.apiKey = "xxxxx";
+//        sparkClient.apiSecret = "xxxxxx";
+//    }
 
     @Test
     void chatStreamTest() throws InterruptedException {
