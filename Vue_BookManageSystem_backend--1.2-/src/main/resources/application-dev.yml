@@ -22,8 +22,8 @@ spring:
 #        time-between-eviction-runs: 10s
 
 server:
-  port: 8888 #配置后端接口的端口号
-  servlet: #配置后端请求的根路径  http://127.0.0.1:8888/api
+  port: 8887 #配置后端接口的端口号
+  servlet: #配置后端请求的根路径  http://127.0.0.1:8887/api
     context-path: "/api"
 #jwt config
 jwt:

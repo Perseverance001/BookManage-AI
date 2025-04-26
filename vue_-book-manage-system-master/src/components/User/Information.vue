@@ -64,9 +64,7 @@
         </el-form>
         <span slot="footer" class="dialog-footer">
           <el-button @click="editDialogVisible = false">取消</el-button>
-          <el-button type="primary" @click="changePassword"
-          >确定</el-button
-          >
+          <el-button type="primary" @click="changePassword" :disabled="!isPasswordMatch">确定</el-button>
         </span>
       </el-dialog>
     </div>
@@ -115,6 +113,11 @@ export default {
     show:false,
     loading:true
     };
+  },
+  computed: {
+    isPasswordMatch() {
+      return this.editForm.password === this.editForm.confirmPassword;
+    }
   },
   methods: {
     //让修改公告的对话框可见,并从数据库中回显数据
